@@ -1,18 +1,28 @@
 import string
 import random
+from PositiveNumberConstructor import PositiveNumber
 
-length=int(input("Enter length wanted for password"))
 
-upperCase=input("Uppercase Characters? (y/n)")
+while True:
+    tempLength=input("Enter length wanted for password:  ")
+    if not tempLength.isdecimal():
+        print("A positive number pls!")
+    else:
+        length= int(tempLength)
+        break
+
+
+upperCase=input("Uppercase Characters? (y/n):  ")
 number=input("Any numbers? (y/n)")
-special=input("Any special Characters? (y/n)")
+special=input("Any special Characters? (y/n):  ")
 
 lowerCase_char = string.ascii_lowercase
 
 if upperCase == "y":
     upperCase_char = string.ascii_uppercase
     while True:
-        num_upperCase = int(input("How many uppercase characters would you like? "))
+        num_upperCase = input("How many uppercase characters would you like? ")
+        my_instance= PositiveNumber(num_upperCase)
         if num_upperCase > length:
             print("Error: Number of uppercase characters cannot be greater than password length.")
         else:
@@ -25,7 +35,8 @@ if number == "y":
     number_char = string.digits
     lengthII = length-num_upperCase
     while True:
-        num_number= int(input("How many numbers would you like?"))
+        num_number= input("How many numbers would you like? ")
+        my_instance= PositiveNumber(num_number)
         if num_number > lengthII:
             print("Error: Number of numbers to great. Available space is :"+str(lengthII))
         else:
@@ -38,12 +49,12 @@ if special == "y":
     special_char = string.punctuation
     lengthIII = lengthII - num_number
     while True:
-        num_special= int(input("How many special characters would you like?"))
+        num_special= input("How many special characters would you like? ")
+        my_instance= PositiveNumber(num_special)
         if num_special < lengthIII:
             print("Error: Number of special Chars to great. Available space is :"+str(lengthIII))
         else:
             break
-
 else:
     number_char = 0
     num_special = 0
